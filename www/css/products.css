@@ -1,0 +1,24 @@
+main > aside #filter + div, main > aside #filter > #close {
+    display: none;
+}
+@media screen and (max-width: 43.75rem) {
+    main > aside #filter {
+        display: none;
+    }
+    main > aside #filter:target {
+        display: block;
+    }
+    main > aside #filter > #close {
+        display: none;
+    }
+    main > aside #filter:target > #close {
+        display: inline-block;
+    }
+    main > aside #filter + div {
+    display: block;
+        text-align: center;
+    }
+    main > aside #filter:target + div {
+        display: none;
+    }
+}

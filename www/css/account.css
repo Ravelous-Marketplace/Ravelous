@@ -1,0 +1,227 @@
+#dashboard {
+	height: 4rem;
+	padding: 1rem;
+	margin-bottom: 3.75rem;
+	background-color: white;
+	overflow: hidden;
+	border: 1px solid lightgrey;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	box-sizing: initial;
+}
+#dashboard > img,
+#dashboard > #welcome,
+#dashboard > #information {
+	height: 100%;
+	order: 0;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+	align-self: flex-start;
+}
+#dashboard > #information {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+#dashboard > #welcome > h3 {
+	margin: 0 0.5rem;
+	line-height: 1.75rem;
+	height: 1.75rem;
+	font-size: 1rem;
+	font-weight: 700;
+}
+#dashboard > #welcome > p {
+	margin: 0 0.5rem;
+	line-height: 2.25rem;
+	height: 2.25rem;
+	font-size: 1.75rem;
+	font-weight: 300;
+}
+#dashboard > #information  {
+	text-align: center;
+}
+#dashboard > #information > div {
+    float: left;
+    width: calc(100% / 4);
+}
+#dashboard > #information > div > .num {
+	margin: 0 0.5rem;
+	line-height: 2.25rem;
+	height: 2.25rem;
+	font-size: 1.75rem;
+	font-weight: 300;
+}
+#dashboard > #information > div > .desc {
+	margin: 0 0.5rem;
+	line-height: 1.75rem;
+	height: 1.75rem;
+	font-size: 1rem;
+	color: #9D2053;
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
+#menu {
+	height: 4rem;
+	overflow: hidden;
+	display: flex;
+}
+#menu.more {
+	height: auto;
+}
+#menu > .flex {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	flex-grow: 1;
+	position: relative;
+}
+#menu > .flex > a, #menu > div#more > a {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	height: 4rem;
+	flex: 1;
+	text-align: center;
+	padding: 0 1rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    cursor: pointer;
+}
+#menu > div#more > a > span {
+    line-height: 4rem;
+}
+#menu > div#more {
+	display: none;
+}
+#menu > div#more.overflowed {
+	display: block;
+}
+#menu > .flex > a > span, #dashboard > menu > div#more > a > span {
+	line-height: 4rem;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+	overflow: hidden;
+}
+#dashboard > menu > .flex > a.active {
+	border-bottom: 3px solid #9D2053;
+}
+#dashboard > menu > .flex > a.overflow {
+	order: 1;
+}
+#pages > div {
+	display: none;
+}
+#pages > div:target {
+	display: block;
+}
+#pages > div:after {
+	content: "";
+    display: table;
+    clear: both;
+}
+#pages table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#pages th, #pages td {
+    text-align: left;
+    padding: 8px;
+}
+
+#pages tr:nth-child(even){
+    background-color: #e6e6e6;
+}
+
+#pages th {
+    background-color: #571B3C !important;
+    color: white;
+}
+#pages h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+#pages h5 {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+#pages table select {
+    width: auto !important;
+    display: inline-block;
+    margin-bottom: 0;
+ }
+@media screen and (max-width: 70rem) {
+    #dashboard {
+        margin-bottom: 1rem;
+    }
+	#dashboard > #information > div > p.num {
+		font-size: 1.4rem !important;
+	}
+	#dashboard > #information > div > p.desc {
+		font-size: 0.75rem !important;
+	}
+}
+@media screen and (max-width: 50rem) {
+    #dashboard > #welcome > h3 {
+        font-size: 0.8rem;
+    }
+    #.dashboard > #welcome > p {
+        font-size: 1.4rem;
+    }
+	#dashboard > #information {
+		flex-wrap: wrap !important;
+	}
+	#dashboard > #information > div {
+		width: calc(50% - 1rem);
+		margin: 0 0.5rem;
+		height: 2rem;
+		white-space: nowrap;
+	}
+	#dashboard > #information > div > p {
+		display: inline-block;
+		margin: 0 !important;
+		line-height: 2rem !important;
+	}
+	#dashboard > #information > div > p.num {
+		font-size: 0.75rem !important;
+	}
+	#dashboard > #information > div > p.desc {
+		font-size: 0.75rem !important;
+	}
+}
+@media screen and (max-width: 43.75rem) {
+    #dashboard {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 37.5rem) {
+    #dashboard > #information > div {
+        height: 1rem;
+        width: 100%;
+        text-align: right;
+        margin: 0;
+    }
+    #dashboard > #information > div > p.num,
+    #.dashboard > #information > div > p.desc {
+        line-height: 1rem !important;
+        height: 1rem !important;
+    }
+    #dashboard > #information {
+	    margin: 0;
+    }
+}

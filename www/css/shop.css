@@ -1,0 +1,45 @@
+#introduction img {
+    height: 6rem;
+}
+#introduction p {
+    display: inline-block;
+}
+#introduction #left_info {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 1rem;
+}
+#introduction #right_info {
+    display: inline-block;
+    vertical-align: top;
+}
+#introduction #title {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.6rem;
+    line-height: 1.5rem;
+    font-weight: 900;
+}
+#introduction #user {
+    margin: 0.5rem 0 1rem 0;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+}
+#introduction #supported {
+    height: 2rem;
+    border-top: 1px solid lightgrey;
+}
+#introduction #supported p {
+    margin: 0;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    vertical-align: top;
+}
+#introduction #supported img {
+    height: 50%;
+    border-left: 1px solid lightgrey;
+    padding: 0.5rem;
+}
+#introduction .dashboard {
+    margin-top: 12.75rem;
+}

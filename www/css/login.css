@@ -1,0 +1,139 @@
+/*
+Dark Primary Color: #111625;
+Light Primary Color:#9D2053;
+Primary Color: 		#571B3C;
+Text/Icons: 		#FFFFFF;
+Accent Color: 		#9E9E9E;
+Primary Text: 		#212121;
+Secondary Color:	#757575;
+Divider Color: 		#BDBDBD;
+*/
+body, html {
+	height: 100%;
+}
+.container {
+	position: relative;
+	height: 100%;
+	background-color: #f2f2f2;
+}
+.access {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 400px;
+	background-color: #FFFFFF;
+	border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.header, .footer {
+	margin: 50px 50px 25px 50px;
+}
+.login, .register {
+	margin: 0 50px;
+}
+.register {
+	display: none;
+}
+img {
+	width: 236px;
+	display: block;
+	margin: 0 auto 25px auto;
+}
+.buttons {
+	text-align: center;
+}
+.buttons button {
+	display: inline-block;
+	line-height: 30px;
+	background-color: #FFFFFF;
+	border: none;
+	margin: 0;
+	padding: 0 12.5px;
+	font-size: 18px;
+	transition: 0.3s border-bottom;
+}
+.buttons button.active {
+	cursor: default !important;
+	border-bottom: 1.5px solid #571B3C !important;
+}
+.buttons button:hover, #submitForm {
+	cursor: pointer;
+	border-bottom: 1.5px solid #111625;
+}
+.buttons button:focus, #submitForm {
+	outline: none;
+}
+#submitForm {
+	border: none;
+	display: block;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+}
+label {
+	display: block;
+}
+input[type=text], input[type=password] {
+	display: block;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #571B3C;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 30px;
+	line-height: 30px;
+	margin: 0 0 20px 0;
+	transition: 0.3s border-bottom;
+}
+input[type=text]:focus, input[type=password]:focus {
+	border-bottom: 2px solid #571B3C;
+	outline:0;
+}
+#strength {
+	border: 1px solid #571B3C;
+	height: 30px;
+	margin: 20px 0;
+}
+#strength > div {
+	width: 0%;
+	height: 100%;
+	background-color: green;
+	transition: 0.4s;
+}
+iframe {
+	display: block;	
+	margin: 0 auto;
+}
+.g-recaptcha {
+	margin: 25px 0;
+}
+.incorrectField {
+	border-bottom: 1px solid red !important;
+}
+.incorrectField:focus {
+	border-bottom: 2px solid red !important;
+}
+@media screen and (max-width: 31.25rem) {
+    .container, body, html {
+        height: auto;
+    }
+    .access {
+        position: absolute;
+    	top: 0;
+    	left: 0;
+    	transform: none;
+    	width: 100%;
+    	border-radius: 0;
+        // box-shadow: none;
+    }
+    .login, .register {
+        margin: 0 25px;
+    }
+    .header, .footer {
+    	margin: 50px 25px 25px 25px;
+    }
+    .g-recaptcha {
+    	overflow-x: auto;
+    }
+}

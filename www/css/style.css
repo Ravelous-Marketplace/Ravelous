@@ -1,0 +1,370 @@
+/*
+Dark Primary Color: #111625;
+Light Primary Color:#9D2053;
+Primary Color: 		#571B3C;
+Text/Icons: 		#FFFFFF;
+Accent Color: 		#9E9E9E;
+Primary Text: 		#212121;
+Secondary Color:	#757575;
+Divider Color: 		#BDBDBD;
+*/
+
+html, body {
+	font-size: 16px;
+	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif !important;
+	color: #212121;
+	background-image: url('/img/ravelous-light-bg.png') !important;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+main {
+    margin: 3.75rem;
+	width: calc(100% - 7.5rem);
+}
+main > section {
+    margin: 0 0 3.75rem 0;
+    padding: 1rem;
+	background-color: white;
+	border: 1px solid lightgrey;
+}
+main > section.thin {
+    padding: 0 !important;
+}
+main > section.nospace {
+    margin: 0;
+}
+main > figure {
+    padding: 0;
+    margin: 0 0 3.75rem 0;
+    border: 1px solid lightgrey;
+}
+main > aside {
+    width: calc(30% - 3.75rem);
+    margin-right: 3.75rem !important;
+    margin: 0 0 3.75rem 0;
+    padding: 1rem;
+	background-color: white;
+	border: 1px solid lightgrey;
+	float: left;
+	box-sizing: border-box;
+}
+main > aside + section {
+    width: 70%;
+    float: left;
+    box-sizing: border-box;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+.grid > div {
+    margin-right: 1rem;
+}
+@media screen and (min-width: 70rem) {
+    .grid:not(.bigger) > div {
+        width: calc(20% - 4rem / 5);
+    }
+    .grid:not(.bigger) > div:nth-of-type(5n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger) > div:nth-of-type(n+6) {
+        margin-top: 1rem;
+    }
+    .grid.bigger > div {
+        width: calc(25% - 3rem / 4);
+    }
+    .grid.bigger > div:nth-of-type(4n) {
+        margin-right: 0;
+    }
+    .grid.bigger > div:nth-of-type(n+5) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (min-width: 55rem) and (max-width: 70rem) {
+    .grid:not(.bigger) > div {
+        width: calc(25% - 3rem / 4);
+    }
+    .grid:not(.bigger) > div:nth-of-type(4n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger) > div:nth-of-type(n+5) {
+        margin-top: 1rem;
+    }
+    .grid.bigger > div {
+        width: calc(100% / 3 - 2rem / 3);
+    }
+    .grid.bigger > div:nth-of-type(3n) {
+        margin-right: 0;
+    }
+    .grid.bigger > div:nth-of-type(n+4) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (min-width: 43.75rem) and (max-width: 55rem) {
+    .grid:not(.bigger) > div {
+        width: calc(100% / 3 - 2rem / 3);
+    }
+    .grid:not(.bigger) > div:nth-of-type(3n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger) > div:nth-of-type(n+4) {
+        margin-top: 1rem;
+    }
+    .grid.bigger > div {
+        width: calc(50% - 1rem / 2);
+    }
+    .grid.bigger > div:nth-of-type(2n) {
+        margin-right: 0;
+    }
+    .grid.bigger > div:nth-of-type(n+3) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (min-width: 35rem) and (max-width: 43.75rem) {
+    .grid:not(.bigger) > div {
+        width: calc(50% - 1rem / 2);
+    }
+    .grid:not(.bigger) > div:nth-of-type(2n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger) > div:nth-of-type(n+3) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 35rem) {
+    .grid > div {
+        width: 100%;
+    }
+    .grid > div {
+        margin-right: 0;
+    }
+    .grid > div:nth-of-type(n+2) {
+        margin-top: 1rem;
+    }
+}
+
+
+@media screen and (min-width: 43.75rem) and (max-width: 70rem) {
+    main {
+        margin: 1rem;
+    	width: calc(100% - 2rem);
+    }
+    main > section, main > figure {
+        margin: 0 0 1rem 0;
+    }
+    main > aside {
+        margin-right: 1rem !important;
+        width: calc(30% - 1rem);
+    }
+}
+@media screen and (max-width: 43.75rem) {
+    main {
+        margin: 0;
+    	width: 100%;
+    }
+    main > section, main > figure {
+        margin: 0;
+    }
+    main > aside {
+        width: 100%;
+        margin-right: 0rem !important;
+        margin: 0 !important;
+    }
+    main > aside + section {
+        width: 100%;
+    }
+    .grid.bigger > div {
+        width: 100%;
+    }
+    .grid.bigger > div {
+        margin-right: 0;
+    }
+    .grid.bigger > div:nth-of-type(n+2) {
+        margin-top: 1rem;
+    }
+}
+
+.hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 20rem;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+.hero + main {
+    margin-top: -3.75rem;
+    position: relative;
+    z-index: 2;
+}
+.inline-center {
+    text-align: center;
+}
+.product > div {
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
+}
+.product img {
+    width: 100%;
+}
+.product .title {
+    font-size: 1.3rem;
+    margin: 0.5rem;
+}
+.product .price {
+    margin: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.product .location, .product .date {
+    margin: 0.5rem;
+    font-weight: 100;
+    font-size: 0.6rem;
+}
+.product .location i, .product .date i {
+    font-size: 0.6rem;
+}
+.product > div:hover {
+    box-shadow: 0 6px 6px -6px black;
+    cursor: pointer;
+}
+
+.optionbox > div {
+    border: 1px solid lightgrey;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+}
+.optionbox > div h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+.optionbox > div p, .optionbox > div a {
+    margin-bottom: 1rem;
+}
+.optionbox > div a {
+    color: #571B3C !important;
+}
+.optionbox > div a:hover {
+    color: #9D2053 !important
+}
+.optionbox > div label {
+	display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.optionbox > div .button-moved {
+    opacity: 0;
+}
+.optionbox > div .button:not(.button-moved):not(label), .optionbox > div button:not(.button-moved):not(label) {
+    position: absolute;
+    left: 1rem;
+}
+
+label:not(.button) {
+    width: 100%;
+    display: block;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.float-left-3 {
+    width: calc(100% / 4);
+    float: left;
+}
+
+.slick-list, .slick-track {
+	height: 100%;
+}
+button.slick-prev.slick-arrow {
+    left: 1rem;
+}
+button.slick-next.slick-arrow {
+    right: 1rem;
+}
+.slick-prev, .slick-next {
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+}
+.slick-prev:before, .slick-next:before {
+    font-size: 2rem;
+}
+
+button, .button {
+    background-color: #571B3C;
+    cursor: pointer;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    color: white;
+    margin: 0 .25rem 0 0;
+    padding: .75em 1.5em .75em;
+    line-height: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .25rem;
+    transition: background-color 0.3s ease-in-out;
+}
+button:hover, a.button:hover {
+    background-color: #9D2053;
+}
+button.dimmed, a.button.dimmed {
+    background-color: grey;
+}
+button.dimmed:hover, a.button.dimmed:hover {
+    background-color: lightgrey;
+}
+input {
+    font-style: italic;
+}
+section > .title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 2rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+}
+section > .subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.hidden {
+    display: none;
+}
+.clearix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+input[type=text]:not(.clear):not(#headerSearchInput), input[type=password], select  {
+	display: block;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #571B3C;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 30px;
+	line-height: 30px;
+	margin: 0 0 20px 0;
+	transition: 0.3s border-bottom;
+}
+input[type=text]:focus, input[type=password]:focus {
+	border-bottom: 2px solid #571B3C;
+	outline:0;
+}
+@media screen and (max-width: 28rem) {
+    html, body {
+        font-size: 14px !important;
+    }
+}

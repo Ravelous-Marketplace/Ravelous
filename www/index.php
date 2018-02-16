@@ -29,11 +29,8 @@ $ravelous_google_authenticator = new RavelousGoogleAuthenticator();
     <main>
         <figure id="shopslider">
         </figure>
-        <section>
-            <h2>New</h2>
-            <div id="newslider" class="grid product"></div>
-            <h2>Popular</h2>
-            <div id="popularslider" class="grid product"></div>
+        <section class="clear thin">
+            <div id="products" class="grid bigger product"></div>
         </section>
     </main>
     <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>

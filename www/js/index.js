@@ -20,11 +20,7 @@ $(document).ready(function(){
         cache: false,
     }).done(function (data) {
         $.each(data, function (i, item) {
-            if (i < 5) {
-                $("#newslider").append(item);
-            } else {
-                $("#popularslider").append(item);
-            }
+            $("#products").append(item);
         });
     });
 });

@@ -12,13 +12,7 @@ function loadlistings() {
         cache: false,
     }).done(function (data) {
         $.each(data, function (i, item) {
-            if (i < 5) {
-                $("#featured").append(item);
-            } else if (i < 10) {
-                $("#popular").append(item);
-            } else {
-                $("#new").append(item);
-            }
+            $("#products").append(item);
         });
     });
 }

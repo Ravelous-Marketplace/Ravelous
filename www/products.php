@@ -51,25 +51,21 @@ $shop = $ravelous_shop->getShopValuesByName($shop);
                 <a href="#filter" class="button">Filter</a>
             </div>
         </aside>
-        <section class="grid bigger product">
+        <section class="grid biggest product clear thin">
         </section>
         <div class="clearix"></div>
     </main>
     <script src="../js/products.js"></script>
-    <script>
-    var loggedin = false;
+    <style>
     <?php 
-    if (isset($result)) {
-        echo "alert('".$result."')";
-    }
     if (isset($_SESSION["id"]) && $_GET['shop'] == $ravelous->getAccountValues($_SESSION["id"])['username']) {
         $id = $_SESSION["id"];
         if (!is_numeric($id)) {
         } else {
-            echo "loggedin = true";
+            echo ".product .remove { display: block; } .product .title { margin-bottom: 5rem !important; }";
         }
     }
     ?>
-    </script>
+    </style>
 </body>
 </html>

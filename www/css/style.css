@@ -11,7 +11,7 @@ Divider Color: 		#BDBDBD;
 
 html, body {
 	font-size: 16px;
-	font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif !important;
+	font-family: 'Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif !important;
 	color: #212121;
 	background-image: url('/img/ravelous-light-bg.png') !important;
 }
@@ -28,11 +28,12 @@ main > section {
 	background-color: white;
 	border: 1px solid lightgrey;
 }
-main > section.thin {
-    padding: 0 !important;
-}
 main > section.nospace {
     margin: 0;
+}
+main > section.clear {
+    background-color: transparent;
+    border: 0;
 }
 main > figure {
     padding: 0;
@@ -64,13 +65,13 @@ main > aside + section {
     margin-right: 1rem;
 }
 @media screen and (min-width: 70rem) {
-    .grid:not(.bigger) > div {
+    .grid:not(.bigger):not(.biggest) > div {
         width: calc(20% - 4rem / 5);
     }
-    .grid:not(.bigger) > div:nth-of-type(5n) {
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(5n) {
         margin-right: 0;
     }
-    .grid:not(.bigger) > div:nth-of-type(n+6) {
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(n+6) {
         margin-top: 1rem;
     }
     .grid.bigger > div {
@@ -82,15 +83,24 @@ main > aside + section {
     .grid.bigger > div:nth-of-type(n+5) {
         margin-top: 1rem;
     }
-}
-@media screen and (min-width: 55rem) and (max-width: 70rem) {
-    .grid:not(.bigger) > div {
-        width: calc(25% - 3rem / 4);
+    .grid.biggest > div {
+        width: calc(100% / 3 - 2rem / 3);
     }
-    .grid:not(.bigger) > div:nth-of-type(4n) {
+    .grid.biggest > div:nth-of-type(3n) {
         margin-right: 0;
     }
-    .grid:not(.bigger) > div:nth-of-type(n+5) {
+    .grid.biggest > div:nth-of-type(n+4) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (min-width: 55rem) and (max-width: 70rem) {
+    .grid:not(.bigger):not(.biggest) > div {
+        width: calc(25% - 3rem / 4);
+    }
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(4n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(n+5) {
         margin-top: 1rem;
     }
     .grid.bigger > div {
@@ -102,15 +112,24 @@ main > aside + section {
     .grid.bigger > div:nth-of-type(n+4) {
         margin-top: 1rem;
     }
-}
-@media screen and (min-width: 43.75rem) and (max-width: 55rem) {
-    .grid:not(.bigger) > div {
-        width: calc(100% / 3 - 2rem / 3);
+    .grid.biggest > div {
+        width: calc(50% - 1rem / 2);
     }
-    .grid:not(.bigger) > div:nth-of-type(3n) {
+    .grid.biggest > div:nth-of-type(2n) {
         margin-right: 0;
     }
-    .grid:not(.bigger) > div:nth-of-type(n+4) {
+    .grid.biggest > div:nth-of-type(n+3) {
+        margin-top: 1rem;
+    }
+}
+@media screen and (min-width: 43.75rem) and (max-width: 55rem) {
+    .grid:not(.bigger):not(.biggest) > div {
+        width: calc(100% / 3 - 2rem / 3);
+    }
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(3n) {
+        margin-right: 0;
+    }
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(n+4) {
         margin-top: 1rem;
     }
     .grid.bigger > div {
@@ -124,13 +143,13 @@ main > aside + section {
     }
 }
 @media screen and (min-width: 35rem) and (max-width: 43.75rem) {
-    .grid:not(.bigger) > div {
+    .grid:not(.bigger):not(.biggest) > div {
         width: calc(50% - 1rem / 2);
     }
-    .grid:not(.bigger) > div:nth-of-type(2n) {
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(2n) {
         margin-right: 0;
     }
-    .grid:not(.bigger) > div:nth-of-type(n+3) {
+    .grid:not(.bigger):not(.biggest) > div:nth-of-type(n+3) {
         margin-top: 1rem;
     }
 }
@@ -160,6 +179,17 @@ main > aside + section {
         width: calc(30% - 1rem);
     }
 }
+@media screen and (max-width: 55rem) {
+    .grid.biggest > div {
+        width: 100%;
+    }
+    .grid.biggest > div {
+        margin-right: 0;
+    }
+    .grid.biggest > div:nth-of-type(n+2) {
+        margin-top: 1rem;
+    }
+}
 @media screen and (max-width: 43.75rem) {
     main {
         margin: 0;
@@ -186,6 +216,11 @@ main > aside + section {
         margin-top: 1rem;
     }
 }
+@media screen and (min-width: 43.75rem) {
+    main > section.thin {
+        padding: 0 !important;
+    }
+}
 
 .hero {
     width: 100%;
@@ -206,30 +241,80 @@ main > aside + section {
     text-align: center;
 }
 .product > div {
+    background-color: white;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    position: relative;
+}
+.product .image {
+    width: 100%;
+    padding-top: 100%;
+    background-size: cover;
+    background-position: center;
     border: 1px solid lightgrey;
     box-sizing: border-box;
+    border-radius: .3rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-width: 2px;
 }
-.product img {
-    width: 100%;
+.product .category {
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin: 1rem 1rem 0 1rem;
+    color: #9d2053;
+    font-weight: 400;
 }
 .product .title {
-    font-size: 1.3rem;
-    margin: 0.5rem;
+    font-size: 1.25rem;
+    margin: 0.15rem 1rem 4rem 1rem;
+}
+.product .remove {
+    display: none;
+    position: absolute;
+    bottom: 3.5rem;
+    left: 1rem;
+    font-size: 0.8rem;
+    color: lightgrey;
+    text-decoration: none;
+}
+.product hr {
+    position: absolute;
+    bottom: 3rem;
+    width: 100%;
+}
+.product .currency {
+    position: absolute;
+    bottom: 0.5rem;
+    left: .5rem;
+    height: 2rem;
+    margin: 0;
 }
 .product .price {
-    margin: 0.5rem;
-    font-weight: bold;
-    font-size: 0.9rem;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 3rem;
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.7rem;
+    line-height: 2rem;
 }
-.product .location, .product .date {
-    margin: 0.5rem;
-    font-weight: 100;
-    font-size: 0.6rem;
-}
-.product .location i, .product .date i {
-    font-size: 0.6rem;
+.product .buybutton {
+    margin: 0;
+    position: absolute;
+    bottom: 0.5rem;
+    right: .5rem;
+    font-family: inherit;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 0.7rem;
+    border-bottom: 1px solid #9d2053;
 }
 .product > div:hover {
+    box-shadow: 0 6px 6px -6px black;
+    cursor: pointer;
+}
+.product > .buybutton:hover {
     box-shadow: 0 6px 6px -6px black;
     cursor: pointer;
 }
@@ -274,11 +359,11 @@ label:not(.button) {
     margin-top: 1rem;
 }
 
-.float-left-3 {
-    width: calc(100% / 4);
-    float: left;
+hr {
+    margin: 0;
+    border: 0 !important;
+    border-top: 1px solid lightgrey !important;
 }
-
 .slick-list, .slick-track {
 	height: 100%;
 }
@@ -305,7 +390,7 @@ button, .button {
     border: none;
     color: white;
     margin: 0 .25rem 0 0;
-    padding: .75em 1.5em .75em;
+    padding: .75rem 1.5rem .75rem;
     line-height: 1rem;
     font-size: 1rem;
     text-align: center;
@@ -321,6 +406,21 @@ button.dimmed, a.button.dimmed {
 }
 button.dimmed:hover, a.button.dimmed:hover {
     background-color: lightgrey;
+}
+button.black, a.button.black {
+    background-color: black;
+}
+button.black:hover, a.button.black:hover {
+    background-color: rgba(0,0,0,0.9);
+}
+button.smaller, .button.smaller {
+    padding: .5rem .5rem .5rem;
+    font-size: .9rem;
+}
+button > i, .button > i {
+    font-size: inherit !important;
+    vertical-align: middle;
+    margin: 0 0.25rem;
 }
 input {
     font-style: italic;

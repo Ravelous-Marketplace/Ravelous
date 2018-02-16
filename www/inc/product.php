@@ -7,9 +7,9 @@ $categ = $product[4];
 $loc = explode(":",$product[5]);
 $city = $loc[2];
 $sec = $product[6];
-$cur = $product[7];
+$cur = isset($product[7]) ? $product[7] : '';
 
 $date = date('Y/m/d H:i:s', $sec);
-$prodcutCardHtml = '<div><img src="data:image/gif;base64,' . $img . '"><p class="title">' . $name . '</p><p class="price">' . $price . ' ' . $cur . '</p><p class="location"><i class="material-icons">location_on</i> ' . $city . '</p><p class="date"><i class="material-icons"><i class="material-icons">access_time</i></i> ' . $date . '</p></div>';
+$prodcutCardHtml = '<div><div class="image" style="background-image: url(data:image/gif;base64,' . $img . ')"></div><p class="category">Category</p><p class="title">' . $name . '</p><a class="remove" href="/API/func.php?removeproduct=' . $name . '">Remove Product</a><hr><img class="currency" src="/img/eth.png"><p class="price">' . $price . ' ' . $cur . '</p><button class="smaller black buybutton"><i class="material-icons">shopping_basket</i>Buy This</div>';
 
 ?>

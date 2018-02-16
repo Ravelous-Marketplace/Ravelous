@@ -83,18 +83,24 @@ $products = unserialize($products);
                 </div>
             </div>
         </section>
-        <section>
-            <h3 class="center-text">Featured</h3>
-            <div id="featured" class="grid product"></div>
-            <h3 class="center-text">Popular</h3>
-            <div id="popular" class="grid product"></div>
-            <h3 class="center-text">New</h3>
-            <div id="new" class="grid product"></div>
+        <section class="clear thin">
+            <div id="products" class="grid bigger product"></div>
         </section>
         <div class="inline-center">
             <a class="button" href="/products/?shop=<?php echo $_GET['shop']?>">View More</a>
         <div>
     </main>
     </div>
+    <style>
+    <?php 
+    if (isset($_SESSION["id"]) && $_GET['shop'] == $ravelous->getAccountValues($_SESSION["id"])['username']) {
+        $id = $_SESSION["id"];
+        if (!is_numeric($id)) {
+        } else {
+            echo ".product .remove { display: block; } .product .title { margin-bottom: 5rem !important; }";
+        }
+    }
+    ?>
+    </style>
 </body>
 </html>

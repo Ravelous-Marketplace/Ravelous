@@ -51,8 +51,8 @@ if (isset($_POST["password"]) and isset($_POST["email"]) and isset($_POST["g-rec
 				<div class="header">
 					<img src="/img/ravelous.png" alt="Ravelous Logo">
 					<div class="buttons">
-						<button type="button" class="login_button active">Login</button>
-						<button type="button" class="register_button">Register</button>
+						<button type="button" class="login_button active dimmed smaller">Login</button>
+						<button type="button" class="register_button dimmed smaller">Register</button>
 						<input type="hidden" name="type" value="Login">
 					</div>
 				</div>

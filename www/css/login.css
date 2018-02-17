@@ -8,7 +8,7 @@ Primary Text: 		#212121;
 Secondary Color:	#757575;
 Divider Color: 		#BDBDBD;
 */
-body, html {
+html, body {
 	height: 100%;
 }
 .container {
@@ -43,32 +43,9 @@ img {
 .buttons {
 	text-align: center;
 }
-.buttons button {
-	display: inline-block;
-	line-height: 30px;
-	background-color: #FFFFFF;
-	border: none;
-	margin: 0;
-	padding: 0 12.5px;
-	font-size: 18px;
-	transition: 0.3s border-bottom;
-}
-.buttons button.active {
-	cursor: default !important;
-	border-bottom: 1.5px solid #571B3C !important;
-}
-.buttons button:hover, #submitForm {
-	cursor: pointer;
-	border-bottom: 1.5px solid #111625;
-}
-.buttons button:focus, #submitForm {
-	outline: none;
-}
 #submitForm {
-	border: none;
 	display: block;
 	margin: 0 auto;
-	background-color: #FFFFFF;
 }
 label {
 	display: block;

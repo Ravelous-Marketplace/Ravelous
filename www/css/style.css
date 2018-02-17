@@ -14,6 +14,8 @@ html, body {
 	font-family: 'Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif !important;
 	color: #212121;
 	background-image: url('/img/ravelous-light-bg.png') !important;
+    margin: 0;
+    padding: 0;
 }
 textarea:focus, input:focus{
     outline: none;

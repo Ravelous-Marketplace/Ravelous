@@ -6,11 +6,6 @@ Ravelous is a crypto-commerce platform intended to make buying and selling items
 The RAVE token is used as an intermediary for product sales when the buyer does not have the seller’s coin of choice. Sellers can also choose to accept RAVE because of its trustability, verifiability, and reliability. Our platform is based on the gold standard principle to create a stable foundation (treasury & reserve) for our token, RAVE. Our treasury will be strengthened by many higher valued coins helping to minimize risk, and
 loss of treasury value. 
 
-## Release History
-
-* 0.0.1
-    * Work in progress
-
 ## Meta
 
 Ravelous – admin@ravelous.com

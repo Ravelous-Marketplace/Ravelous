@@ -103,7 +103,7 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
     include("inc/header.php");
     ?>
     <main>
-        <section id="dashboard">
+        <section class="dashboard">
             <img src="/img/ravelous_icon.jpg">
             <div id="welcome">
                 <h3>Welcome back,</h3>

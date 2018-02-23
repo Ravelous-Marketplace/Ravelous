@@ -515,7 +515,12 @@ main > aside + section {
     }
 }
 
+<<<<<<< HEAD
 div.optionbox > div {
+=======
+
+.optionbox > div {
+>>>>>>> 29ca5c6a5023af51cb52f902cbccb8d107a2abe4
     border: 1px solid lightgrey;
     padding: 1rem;
     box-sizing: border-box;

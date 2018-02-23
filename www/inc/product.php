@@ -11,6 +11,10 @@ $sec = $product[6];
 $cur = isset($product[7]) ? $product[7] : '';
 
 $date = date('Y/m/d H:i:s', $sec);
+<<<<<<< HEAD
 $prodcutCardHtml = '<div><div class="image" style="background-image: url(data:image/gif;base64,' . $img . ')"></div><p class="category">' . $categ . '</p><p class="title">' . $name . '</p><a class="remove" onclick="removeproduct(\'' . $id . '\')">Remove Product</a><hr><img class="currency" src="/img/eth.png"><p class="price">' . $price . ' ' . $cur . '</p><button class="smaller black buybutton"><i class="material-icons">shopping_basket</i>Buy This</div>';
+=======
+$prodcutCardHtml = '<div><div class="image" style="background-image: url(data:image/gif;base64,' . $img . ')"></div><p class="category">Category</p><p class="title">' . $name . '</p><a class="remove" onclick="removeproduct(\'' . $id . '\')">Remove Product</a><hr><img class="currency" src="/img/eth.png"><p class="price">' . $price . ' ' . $cur . '</p><button class="smaller black buybutton"><i class="material-icons">shopping_basket</i>Buy This</div>';
+>>>>>>> 29ca5c6a5023af51cb52f902cbccb8d107a2abe4
 
 ?>

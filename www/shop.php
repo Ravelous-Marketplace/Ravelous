@@ -57,7 +57,7 @@ $products = unserialize($products);
     <title>Shop</title>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
-    <script src="../js/shop.js"></script>
+    <script src="/js/shop.js"></script>
     <link rel="stylesheet" href="/css/shop.css">
 </head>
 <body>
@@ -65,22 +65,42 @@ $products = unserialize($products);
     include("inc/header.php");
     ?>
     <div class="hero" style="background-image: url('data:image/gif;base64,<?php echo $shop['shop_cover_image']; ?>')">
+        <div>
+            <h1><?php echo $shop['shop_title']; ?></h1>
+            <h3><?php echo $shop['shop_description']; ?></h3>
+        </div>
     </div>
     <main>
-        <section id="introduction">
+        <section class="dashboard">
             <img src="/img/ravelous_icon.jpg">
-            <div id="left_info">
-                <p id="title"><?php echo $shop['shop_title']; ?></p><br>
+            <div id="welcome">
                 <p id="user"><?php echo $_GET['shop']?></p>
+                <a class="smaller button">Send Message</a>
             </div>
-            <div id="right_info">
-                <p id="desc"><?php echo $shop['shop_description']; ?></p>
-                <div id="supported">
-                    <p>Supported Currencies</p>
-                    <img src="/img/btc.png">
-                    <img src="/img/eth.png">
-                    <img src="/img/ada.jpg">
+            <div id="information">
+                <div id="rating">
+                    <p class="num">4.7</p>
+                    <p class="desc">AVG Rating</p>
                 </div>
+                
+                <div id="reviewcount">
+                    <p class="num">217</p>
+                    <p class="desc">Total Reviews</p>
+                </div>
+                <div id="itemcount">
+                    <p class="num">120</p>
+                    <p class="desc">Items In Shop</p>
+                </div>
+                <div id="sold">
+                    <p class="num">315</p>
+                    <p class="desc">Items Sold</p>
+                </div>
+            </div>
+            <div id="accepted">
+                <img src="/img/btc.png">
+                <img src="/img/eth.png">
+                <img src="/img/ada.jpg">
+                <p>Accepted</p>
             </div>
         </section>
         <section class="clear thin">

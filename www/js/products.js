@@ -9,17 +9,13 @@ $(document).ready(function() {
     
     reloadproducts();
 });
-function removeproduct(name) {
-    id = btoa(name);
-    console.log(url.origin + '/API/func/?removeproduct='+id)
+function removeproduct(id) {
     $.ajax({
         url: '/API/func/?removeproduct='+id,
         dataType: "JSON",
         success: function (resdata) {
             alert(resdata);
-            if (resdata == 'ERR_OK') {
-                reloadproducts();
-            }
+            reloadproducts();
         },
     });
 }

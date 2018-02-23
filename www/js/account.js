@@ -20,7 +20,7 @@ $(document).ready(function(){
     $('input[type=file]').change(function(){
         updateFileInput($(this));
     });
-    $('.optionbox > div button').click(function(){profileblocks($(this))});
+    $('.optionbox button').click(function(){profileblocks($(this))});
 });
 $(window).resize(function(){
     menumore();

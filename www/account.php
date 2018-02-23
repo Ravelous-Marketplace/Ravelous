@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require("functions.php");
 $ravelous = new Ravelous();
@@ -25,6 +28,11 @@ $data = $ravelous->getAccountValues($id);
 //set data's
 $username = $data["username"];
 $email = $data["email"];
+$number = $data["phone_number"];
+$currency_settings = explode(":", $data["currency_settings"]);
+$accepted_currency = unserialize(base64_decode($currency_settings[0]));
+$preffered_currency = base64_decode($currency_settings[1]);
+$local_currency = base64_decode($currency_settings[2]);
 
 //set balances
 if (!isset($_SESSION["balancesset"])) {
@@ -77,7 +85,28 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
     }
 
 } elseif (isset($_POST["phone_number"])) {
-    $result = $ravelous_shop->addPhoneNumbre($id, $_POST["phone_number"]);
+    $result = $ravelous->addPhoneNumber($id, $_POST["phone_number"]);
+} elseif (isset($_POST["current_password"]) &&
+    isset($_POST["new_password"]) &&
+    isset($_POST["repeat_password"])) {
+    if ($_POST["new_password"] != $_POST['repeat_password']) {
+        $result = "ERR_NO_MATCH";
+    } else {
+        $result = $ravelous->changePassword($id, $_POST["current_password"], $_POST["new_password"]);
+    }
+} elseif (isset($_POST["preffered_currency"])) {
+    if (!isset($_POST["accepted_currency"]) || count($_POST["accepted_currency"]) == 0) {
+        $result = "ERR_NO_ACCEPTED";
+    } else {
+        $accepted = [];
+        $keys = array_keys($_POST["accepted_currency"]);
+        for ($i = 0; $i < count($_POST["accepted_currency"]); $i++) {
+            if ($_POST["accepted_currency"][$keys[$i]] == "on") {
+                $accepted[] = $keys[$i];
+            }
+        }
+        $result = $ravelous->currencySettings($id, $accepted, $_POST["preffered_currency"], $_POST["local_currency"]);
+    }
 }
 
 
@@ -103,7 +132,7 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
     include("inc/header.php");
     ?>
     <main>
-        <section id="dashboard">
+        <section class="dashboard">
             <img src="/img/ravelous_icon.jpg">
             <div id="welcome">
                 <h3>Welcome back,</h3>
@@ -149,13 +178,11 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
                             <h6><?php echo $username; ?></h6>
                             <div>
                                 <p><?php echo $email; ?></p>
-                                <p>Phone: 0612345678</p>
+                                <p>Phone: <?php echo $number?></p>
                             </div>
                             <div class="hidden">
-                                <label>Change Username:</label>
-                                <input type="text" value="<?php echo $username; ?>"/>
                                 <label>Change Phone:</label>
-                                <input type="text" name="phone_number" value="0618867854"/>
+                                <input type="text" name="phone_number" value="<?php echo $number?>"/>
                             </div>
                             <div class="button button-moved">Edit</div>
                             <button type="button" orig="Edit">Edit</button>
@@ -171,11 +198,11 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
                             <div class="hidden">
                                 <p>Change Password</p>
                                 <label>Current Password:</label>
-                                <input type="text"/>
+                                <input type="password" name="current_password"/>
                                 <label>New Password:</label>
-                                <input type="text"/>
+                                <input type="password" name="new_password"/>
                                 <label>Repeat:</label>
-                                <input type="text"/>
+                                <input type="password" name="repeat_password"/>
                             </div>
                             <div class="button button-moved">Edit</div>
                             <button type="button" orig="Edit">Edit</button>
@@ -206,32 +233,32 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
                         <form action="#profile" method="POST">
                             <h6>Currency</h6>
                             <div>
-                                <p>Accepted: ETH, BTC, RAVE</p>
-                                <p>Preferred: ETH</p>
-                                <p>Local: USD</p>
+                                <p>Accepted: <?php echo implode(", ", $accepted_currency)?></p>
+                                <p>Preferred: <?php echo $preffered_currency ?></p>
+                                <p>Local: <?php echo $local_currency ?></p>
                             </div>
                             <div class="hidden">
                                 <label>Accepted:</label>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="example">
+                                    <input type="checkbox" name="accepted_currency[BTC]" <?php echo $ravelous->checkAccepted($accepted_currency, 'BTC')?>>
                                     <label>Bitcoin (BTC)</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="example">
+                                    <input type="checkbox" name="accepted_currency[ETH]" <?php echo $ravelous->checkAccepted($accepted_currency, 'ETH')?>>
                                     <label>Ethereum (ETH)</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="example">
+                                    <input type="checkbox" name="accepted_currency[RAVE]" <?php echo $ravelous->checkAccepted($accepted_currency, 'RAVE')?>>
                                     <label>RAVE</label>
                                 </div><br>
                                 <label>Preferred:</label>
-                                <select>
+                                <select name="preffered_currency">
                                     <option>BTC</option>
                                     <option>RAVE</option>
                                     <option>ETH</option>
                                 </select>
                                 <label>Local:</label>
-                                <select>
+                                <select name="local_currency">
                                     <option>USD</option>
                                     <option>EUR</option>
                                 </select>
@@ -392,23 +419,23 @@ if (isset($_POST["code"]) and isset($_POST["secret"])) {
                     </div>
                 </div>
                 <?php } else { ?>
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <h6>Create your shop!</h6>
+                <form action="#profile" class="optionbox" method="POST" enctype="multipart/form-data">
+                    <h3>Create your shop!</h3>
                     <div>
-                        <p><?php echo $shop_values["shop_title"]; ?></p>
-                        <label>Shop Title</label>
-                        <input type="text" name="shop_title">
-                        <label>Shop Description</label>
-                        <input type="text" name="shop_description">
-                        
-                        <label>Cover Picture</label><br>
-                        <label class="button" for="picture3" id="uploadfilelabel">Upload file</label>
-                        <input type="file" name="shop_cover_image" id="picture3" style="display: none;"/><br>
+                        <p>You have not created a shop yet. To begin creating, press create.</p>
                     </div>
                     <div class="hidden">
+                        <label>Shop Title:</label>
+                        <input type="text" name="shop_title">
+                        <label>Shop Description:</label>
+                        <input type="text" name="shop_description">
+                        <label>Cover Picture:</label>
+                        <label class="button" for="picture" id="uploadfilelabel">Upload file</label>
+                        <input type="file" name="shop_cover_image" id="picture" style="display: none;"/><br><br>
                     </div>
-                    <div class="button button-moved">Edit</div>
-                    <button class="button submit" type="button" orig="Edit">Create</button>
+                    <div class="button button-moved">Create</div>
+                    <button type="button" orig="Create">Create</button>
+                    <button class="close hidden dimmed" type="button">Close</button>
                 </form>
                 <?php } ?>
             </div>

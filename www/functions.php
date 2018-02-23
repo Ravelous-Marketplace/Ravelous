@@ -3,6 +3,7 @@ require("inc/GoogleAuthenticator.php");
 require("inc/SwiftMailer/lib/swift_required.php");
 
 class Ravelous {
+
 	protected $dbhost = "secret";
 	protected $dbuser = "secret";
 	protected $dbpassword = "secret";
@@ -242,9 +243,80 @@ class Ravelous {
 				return "ERR_REGISTER_OK";
 
 			}
-
 	}
 
+	public function addPhoneNumber($id, $phone_number) {
+		$phone_number = strip_tags($phone_number);
+
+		$db = $this->getRavelousDB();
+		$sql = "UPDATE users SET phone_number = :phone_number WHERE id = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':phone_number', $phone_number);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+
+		return "ERR_OK";
+	}
+
+	public function changePassword($id, $current_password, $new_password) {
+		//verify data
+		if ($this->validateInfo("validemail@gmail.com", $new_password) !== "ERR_OK") {
+			return "ERR_INVALID_INFO";
+		}
+
+
+		$db = $this->getRavelousDB();
+		$sql = "SELECT password FROM users WHERE id = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+
+		$data = $stmt->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC);
+
+
+		$password_db = @$data[$id][0]["password"];
+		$current_password = $this->hashPassword($current_password);
+
+		if ($password_db !== $current_password) {
+			return "ERR_UNAUTHORIZED";
+		}
+
+		$new_password = $this->hashPassword($new_password);
+		$sql = "UPDATE users SET password = :password WHERE id = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':password', $new_password);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+
+		return "ERR_OK";
+	}
+
+	public function currencySettings($id, $accepted, $preferred, $local) {
+		$accepted = serialize($accepted);
+		$preferred = strip_tags($preferred);
+		$local = strip_tags($local);
+
+		$currency_settings = base64_encode($accepted).":".base64_encode($preferred).":".base64_encode($local);
+
+		$db = $this->getRavelousDB();
+		$sql = "UPDATE users SET currency_settings = :currency_settings WHERE id = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':currency_settings', $currency_settings);
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+
+		return "ERR_OK";
+	}
+
+	public function checkAccepted($accepted, $current) {
+		for ($i = 0; $i < count($accepted); $i++) {
+			if ($accepted[$i] == $current) {
+				return 'checked';
+				break;
+			}
+		}
+		return "ERR_NOT_FOUND";
+	}
 }
 
 class RavelousCrypto extends Ravelous {
@@ -264,6 +336,7 @@ class RavelousCrypto extends Ravelous {
 		$ethereum = $this->generateEthereum();
 		$internal_addresses = base64_encode(serialize($bitcoin)).":".base64_encode(serialize($ethereum));
 		return $internal_addresses;
+
 	}
 
 	public function getCryptoValues($id) {
@@ -394,12 +467,7 @@ class RavelousCrypto extends Ravelous {
 
 			return "ERR_OK";
 		}
-
-
 	}
-
-
-
 }
 
 class Errors extends Ravelous  {
@@ -412,79 +480,7 @@ class Errors extends Ravelous  {
 	}
 }
 
-class RavelousShop extends Ravelous {
-
-	public function changePassword($id, $current_password, $new_password) {
-		$ravelous = new Ravelous;
-
-		//verify data
-		if ($ravelous->validateInfo("validemail@gmail.com", $new_password) !== "ERR_OK") {
-			return "ERR_INVALID_INFO";
-		}
-
-
-		$db = $ravelous->getRavelousDB();
-		$sql = "SELECT password FROM users WHERE id = :id";
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam(":id", $id);
-		$stmt->execute();
-
-		$data = $stmt->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC);
-
-
-		$password_db = @$data[$id][0]["password"];
-		$current_password = $ravelous->hashPassword($current_password);
-
-		if ($password_db !== $current_password) {
-			return "ERR_UNAUTHORIZED";
-		}
-
-		$new_password = $ravelous->hashPassword($new_password);
-		$sql = "UPDATE users SET password = :password WHERE id = :id";
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':password', $new_password);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-
-		return "ERR_OK";
-
-
-	}
-
-	public function currencySettings($id, $accepted, $preferred, $local) {
-		$ravelous = new Ravelous;
-
-		$accepted = strip_tags($accepted);
-		$preferred = strip_tags($preferred);
-		$local = strip_tags($local);
-
-		$currency_settings = base64_encode($accepted).":".base64_encode($preferred).":".base64_encode($local);
-
-		$db = $ravelous->getRavelousDB();
-		$sql = "UPDATE users SET currency_settings = :currency_settings WHERE id = :id";
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':currency_settings', $currency_settings);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-
-		return "ERR_OK";
-	}
-
-	public function addPhoneNumber($id, $phone_number) {
-		$ravelous = new Ravelous;
-
-		$phone_number = strip_tags($phone_number);
-
-		$db = $ravelous->getRavelousDB();
-		$sql = "UPDATE users SET phone_number = :phone_number WHERE id = :id";
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':phone_number', $phone_number);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-
-		return "ERR_OK";
-	}
-	
+class RavelousShop extends Ravelous {	
 	public function doesUserHaveShop($id) {
 		$ravelous = new Ravelous;
 
